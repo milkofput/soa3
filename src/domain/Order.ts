@@ -66,7 +66,7 @@ export class Order {
     private isEligibleForDiscount(totalAmtPaidTickets: number): boolean {
         return !this.isStudentOrder 
             && totalAmtPaidTickets >= 6 
-            && [0, 6].includes(this.seatReservations[0].getMovieScreening().getDate().getDay());
+            && [0, 5, 6].includes(this.seatReservations[0].getMovieScreening().getDate().getDay());
     }
 
     public export(exportFormat: TicketExportFormat): void {
