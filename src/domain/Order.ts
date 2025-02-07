@@ -28,6 +28,7 @@ export class Order {
         return totalPrice;
     }
 
+    //Controleer of tickets voor zelfde film zijn
     private validateTickets(): void {
         if (this.seatReservations.length === 0) {
             throw new Error("No tickets in order");
@@ -39,6 +40,7 @@ export class Order {
         }
     }
 
+    //2e ticket gratis bij studentorder of doordeweeks
     private calculateTotalAmtPaidTickets(): number {
         if (this.isStudentOrder || [1, 2, 3, 4].includes(this.seatReservations[0].getMovieScreening().getDate().getDay())) {
             return this.seatReservations.length - Math.floor(this.seatReservations.length / 2);
@@ -47,6 +49,7 @@ export class Order {
         }
     }
 
+    //Premium tickets 2 of 3 euro extra
     private calculateTotalPrice(ticketsToPay: MovieTicket[]): number {
         let totalPrice = 0;
         for (let ticket of ticketsToPay) {
@@ -59,6 +62,7 @@ export class Order {
         return totalPrice;
     }
 
+    //6 of meer tickets in het weekend voor niet studentorder
     private isEligibleForDiscount(totalAmtPaidTickets: number): boolean {
         return !this.isStudentOrder 
             && totalAmtPaidTickets >= 6 
