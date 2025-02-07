@@ -141,4 +141,7 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+# Exclude TAP .tap folder
+.tap
+
 # End of https://www.toptal.com/developers/gitignore/api/node
