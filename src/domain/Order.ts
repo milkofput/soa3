@@ -2,9 +2,9 @@ import { MovieTicket } from "./MovieTicket";
 import { TicketExportFormat } from "./TicketExportFormat";
 
 export class Order {
-    private seatReservations: MovieTicket[] = [];
+    private readonly seatReservations: MovieTicket[] = [];
 
-    constructor(private orderNr: number, private isStudentOrder: boolean) {}
+    constructor(private readonly orderNr: number, private readonly isStudentOrder: boolean) {}
 
     public getOrderNr(): number {
         return this.orderNr;
@@ -42,7 +42,7 @@ export class Order {
 
     //2e ticket gratis bij studentorder of doordeweeks
     private calculateTotalAmtPaidTickets(): number {
-        if (this.isStudentOrder || [1, 2, 3, 4].includes(this.seatReservations[0].getMovieScreening().getDate().getDay())) {
+        if (this.isStudentOrder || [1, 2, 3, 4].includes(this.seatReservations[0]?.getMovieScreening?.().getDate().getDay())) {
             return this.seatReservations.length - Math.floor(this.seatReservations.length / 2);
         } else {
             return this.seatReservations.length;
