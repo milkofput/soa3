@@ -1,7 +1,7 @@
 import { MovieScreening } from "./MovieScreening";
 
 export class MovieTicket{
-    constructor(private movieScreening: MovieScreening, private isPremium: boolean, private seatRow: number, private seatNr: number){ 
+    constructor(private readonly movieScreening: MovieScreening, private readonly isPremium: boolean, private readonly seatRow: number, private readonly seatNr: number){ 
         
     }
 
