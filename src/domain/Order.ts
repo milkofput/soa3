@@ -3,6 +3,8 @@ import { TicketExportFormat } from "./TicketExportFormat";
 
 export class Order {
     private readonly seatReservations: MovieTicket[] = [];
+    private weekdays = [1, 2, 3, 4];
+    private weekend = [0, 5, 6];
 
     constructor(private readonly orderNr: number, private readonly isStudentOrder: boolean) {}
 
@@ -42,7 +44,7 @@ export class Order {
 
     //2e ticket gratis bij studentorder of doordeweeks
     private calculateTotalAmtPaidTickets(): number {
-        if (this.isStudentOrder || [1, 2, 3, 4].includes(this.seatReservations[0]?.getMovieScreening?.().getDate().getDay())) {
+        if (this.isStudentOrder || this.weekdays.includes(this.seatReservations[0]?.getMovieScreening?.().getDate().getDay())) {
             return this.seatReservations.length - Math.floor(this.seatReservations.length / 2);
         } else {
             return this.seatReservations.length;
@@ -66,7 +68,7 @@ export class Order {
     private isEligibleForDiscount(totalAmtPaidTickets: number): boolean {
         return !this.isStudentOrder 
             && totalAmtPaidTickets >= 6 
-            && [0, 5, 6].includes(this.seatReservations[0].getMovieScreening().getDate().getDay());
+            && this.weekend.includes(this.seatReservations[0].getMovieScreening().getDate().getDay());
     }
 
     public export(exportFormat: TicketExportFormat): void {
