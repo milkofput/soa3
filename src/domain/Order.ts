@@ -1,4 +1,6 @@
+import { CreatedOrderState } from "./CreatedOrderState";
 import { MovieTicket } from "./MovieTicket";
+import { OrderState } from "./OrderState";
 import { TicketExportFormat } from "./TicketExportFormat";
 
 export class Order {
@@ -6,7 +8,7 @@ export class Order {
     private weekdays = [1, 2, 3, 4];
     private weekend = [0, 5, 6];
 
-    constructor(private readonly orderNr: number, private readonly isStudentOrder: boolean) {}
+    constructor(private readonly orderNr: number, private readonly isStudentOrder: boolean, private state: OrderState = new CreatedOrderState(this)) {}
 
     public getOrderNr(): number {
         return this.orderNr;
@@ -69,6 +71,30 @@ export class Order {
         return !this.isStudentOrder 
             && totalAmtPaidTickets >= 6 
             && this.weekend.includes(this.seatReservations[0].getMovieScreening().getDate().getDay());
+    }
+
+    public pay(): void {
+        this.state.pay();
+    }
+
+    public submit(): void {
+        this.state.submit();
+    }       
+
+    public modify(): void {
+        this.state.modify();
+    }
+
+    public payLater(): void {
+        this.state.payLater();
+    }
+
+    public cancel(): void {
+        this.state.cancel();
+    }
+
+    public setState(state: OrderState): void {
+        this.state = state;
     }
 
     public export(exportFormat: TicketExportFormat): void {
