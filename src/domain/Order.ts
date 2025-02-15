@@ -73,16 +73,16 @@ export class Order {
             && this.weekend.includes(this.seatReservations[0].getMovieScreening().getDate().getDay());
     }
 
-    public pay(): void {
-        this.state.pay();
-    }
-
     public submit(): void {
         this.state.submit();
     }       
 
     public modify(): void {
         this.state.modify();
+    }
+
+    public pay(): void {
+        this.state.pay();
     }
 
     public payLater(): void {

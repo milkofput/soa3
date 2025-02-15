@@ -88,3 +88,34 @@ console.log(order9.calculatePrice()); // 81,90
 
 order9.export(TicketExportFormat.JSON);
 order9.export(TicketExportFormat.PLAINTEXT);
+
+/* ------------------------------ ORDER STATES ------------------------------*/
+
+// order state pay immediately
+let order10 = new Order(1, false); // CreatedOrderState
+order10.addSeatReservation(ticket1);
+order10.submit(); // ReservedOrderState
+order10.pay(); // CompletedOrderState
+
+// order state pay later
+let order11 = new Order(1, false); // CreatedOrderState
+order11.addSeatReservation(ticket1);
+order11.submit(); // ReservedOrderState
+order11.payLater(); // ProvisionalOrderState
+order11.pay(); // CompletedOrderState
+
+// order state modify then pay later then cancel
+let order12 = new Order(1, false); // CreatedOrderState
+order12.addSeatReservation(ticket1);
+order12.submit(); // ReservedOrderState
+order12.modify(); // CreatedOrderState
+order12.submit(); // ReservedOrderState
+order12.payLater(); // ProvisionalOrderState
+order12.cancel(); // CancelledOrderState
+
+// order can not be cancelled when completed
+let order13 = new Order(1, false); // CreatedOrderState
+order13.addSeatReservation(ticket1);
+order13.submit(); // ReservedOrderState
+order13.pay(); // CompletedOrderState
+order13.cancel(); // CompletedOrderState
