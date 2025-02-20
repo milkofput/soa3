@@ -1,3 +1,4 @@
+import { INotificationAdapter } from "./INotificationAdapter";
 import { OrderState } from "./OrderState";
 
 export class CancelledOrderState implements OrderState {

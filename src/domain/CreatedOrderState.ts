@@ -8,6 +8,7 @@ export class CreatedOrderState implements OrderState {
 
     public submit(): void {
         this.order.setState(new ReservedOrderState(this.order));
+        this.order.setStatusMessage("Order has been submitted");
     }
 
     public modify(): void {
