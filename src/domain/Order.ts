@@ -1,47 +1,17 @@
 import { CreatedOrderState } from "./CreatedOrderState";
-import { Customer } from "./Customer";
-import { CustomerNotifier } from "./CustomerNotifier";
 import { MovieTicket } from "./MovieTicket";
-import { OrderObserver } from "./OrderObserver";
 import { OrderState } from "./OrderState";
-import { TicketExportFormat } from "./TicketExportFormat"; 
+import { TicketExportFormat } from "./TicketExportFormat";
 
 export class Order {
     private readonly seatReservations: MovieTicket[] = [];
-    private readonly observers: OrderObserver[] = [];
-    private statusMessage: string = "";
     private weekdays = [1, 2, 3, 4];
     private weekend = [0, 5, 6];
 
-    constructor(private readonly orderNr: number, private readonly isStudentOrder: boolean, private readonly customer: Customer, private state: OrderState = new CreatedOrderState(this)) {
-        this.addObserver(new CustomerNotifier(customer.getPreferredNotificationChannel()));
-    }
-
-    public addObserver(observer: OrderObserver): void {
-        this.observers.push(observer);
-    }
-
-    private notifyObservers(): void {
-        for (let observer of this.observers) {
-            observer.update(this);
-        }
-    }
-
-    public setStatusMessage(message: string): void {
-        this.statusMessage = message;
-        this.notifyObservers();
-    }
-
-    public getStatusMessage(): string {
-        return this.statusMessage;
-    }
+    constructor(private readonly orderNr: number, private readonly isStudentOrder: boolean, private state: OrderState = new CreatedOrderState(this)) {}
 
     public getOrderNr(): number {
         return this.orderNr;
-    }
-
-    public getCustomer(): Customer {
-        return this.customer;
     }
 
     public addSeatReservation(ticket: MovieTicket): void {

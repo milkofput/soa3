@@ -1,5 +1,3 @@
-import { INotificationAdapter } from "./INotificationAdapter";
-
 export interface OrderState {
     submit(): void;
     modify(): void;

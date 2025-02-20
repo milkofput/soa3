@@ -17,7 +17,6 @@ export class ProvisionalOrderState implements OrderState {
 
     public pay(): void {
         this.order.setState(new CompletedOrderState());
-        this.order.setStatusMessage("Order has been paid for and completed");
     }
 
     public payLater(): void {
@@ -26,6 +25,5 @@ export class ProvisionalOrderState implements OrderState {
 
     public cancel(): void {
         this.order.setState(new CancelledOrderState());
-        this.order.setStatusMessage("Order has been cancelled");
     }
 }
