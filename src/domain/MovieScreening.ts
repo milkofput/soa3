@@ -1,9 +1,7 @@
 import { Movie } from "./Movie";
 
 export class MovieScreening {
-    constructor(private movie: Movie, private dateAndTime: Date, private pricePerSeat: number) {
-        
-    }
+    constructor(private movie: Movie, private dateAndTime: Date, private pricePerSeat: number) {}
 
     public getPricePerSeat(): number {
         return this.pricePerSeat;

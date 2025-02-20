@@ -1,8 +1,8 @@
 import { INotificationAdapter } from "./INotificationAdapter";
 import { Order } from "./Order";
-import { OrderObserver } from "./OrderObserver";
+import { IOrderObserver } from "./IOrderObserver";
 
-export class CustomerNotifier implements OrderObserver {
+export class CustomerNotifier implements IOrderObserver {
     private notifier: INotificationAdapter;
 
     constructor(notifier: INotificationAdapter) {

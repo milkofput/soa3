@@ -1,4 +1,4 @@
-export interface OrderState {
+export interface IOrderState {
     submit(): void;
     modify(): void;
     pay(): void;

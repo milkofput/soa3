@@ -1,5 +1,5 @@
 import { Order } from "./Order";
 
-export interface OrderObserver {
+export interface IOrderObserver {
     update(order: Order): void;
 }

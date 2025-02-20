@@ -4,7 +4,7 @@ import { Movie } from "./domain/Movie";
 import { MovieScreening } from "./domain/MovieScreening";
 import { MovieTicket } from "./domain/MovieTicket";
 import { Order } from "./domain/Order";
-import { TicketExportFormat } from "./domain/TicketExportFormat";
+import { ETicketExportFormat } from "./domain/TicketExportFormat";
 import { WhatsAppAdapter } from "./domain/WhatsappAdapter";
 
 console.log("Softwareontwerp en -architectuur 3");
@@ -94,8 +94,8 @@ order9.addSeatReservation(ticket4);
 order9.addSeatReservation(ticket3);
 console.log(order9.calculatePrice()); // 81,90
 
-order9.export(TicketExportFormat.JSON);
-order9.export(TicketExportFormat.PLAINTEXT);
+order9.export(ETicketExportFormat.JSON);
+order9.export(ETicketExportFormat.PLAINTEXT);
 
 /* ------------------------------ ORDER STATES ------------------------------*/
 

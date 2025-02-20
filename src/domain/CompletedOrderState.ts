@@ -1,4 +1,4 @@
-import { OrderState } from "./OrderState";
+import { OrderState } from "./IOrderState";
 
 export class CompletedOrderState implements OrderState {
     constructor() {

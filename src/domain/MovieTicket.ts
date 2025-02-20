@@ -1,9 +1,7 @@
 import { MovieScreening } from "./MovieScreening";
 
 export class MovieTicket{
-    constructor(private readonly movieScreening: MovieScreening, private readonly isPremium: boolean, private readonly seatRow: number, private readonly seatNr: number){ 
-        
-    }
+    constructor(private readonly movieScreening: MovieScreening, private readonly isPremium: boolean, private readonly seatRow: number, private readonly seatNr: number){}
 
     public isPremiumTicket(): boolean{
         return this.isPremium;

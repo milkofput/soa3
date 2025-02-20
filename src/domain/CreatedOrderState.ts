@@ -1,5 +1,5 @@
 import { Order } from "./Order";
-import { OrderState } from "./OrderState";
+import { OrderState } from "./IOrderState";
 import { ReservedOrderState } from "./ReservedOrderState";
 
 export class CreatedOrderState implements OrderState {

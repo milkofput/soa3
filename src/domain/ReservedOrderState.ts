@@ -2,7 +2,7 @@ import { CancelledOrderState } from "./CancelledOrderState";
 import { CompletedOrderState } from "./CompletedOrderState";
 import { CreatedOrderState } from "./CreatedOrderState";
 import { Order } from "./Order";
-import { OrderState } from "./OrderState";
+import { OrderState } from "./IOrderState";
 import { ProvisionalOrderState } from "./ProvisionalOrderState";
 
 export class ReservedOrderState implements OrderState {

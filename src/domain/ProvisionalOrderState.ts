@@ -1,7 +1,7 @@
 import { CancelledOrderState } from "./CancelledOrderState";
 import { CompletedOrderState } from "./CompletedOrderState";
 import { Order } from "./Order";
-import { OrderState } from "./OrderState";
+import { OrderState } from "./IOrderState";
 
 export class ProvisionalOrderState implements OrderState {
     constructor(private order: Order) {

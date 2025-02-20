@@ -1,9 +1,7 @@
 import { MovieScreening } from "./MovieScreening";
 
 export class Movie {
-    constructor(private title: string) {
-        
-    }
+    constructor(private title: string) {}
 
     public addScreening(screening: MovieScreening): void {
         // ...

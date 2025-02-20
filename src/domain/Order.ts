@@ -2,22 +2,22 @@ import { CreatedOrderState } from "./CreatedOrderState";
 import { Customer } from "./Customer";
 import { CustomerNotifier } from "./CustomerNotifier";
 import { MovieTicket } from "./MovieTicket";
-import { OrderObserver } from "./OrderObserver";
-import { OrderState } from "./OrderState";
-import { TicketExportFormat } from "./TicketExportFormat"; 
+import { IOrderObserver } from "./IOrderObserver";
+import { IOrderState } from "./IOrderState";
+import { ETicketExportFormat } from "./TicketExportFormat"; 
 
 export class Order {
     private readonly seatReservations: MovieTicket[] = [];
-    private readonly observers: OrderObserver[] = [];
+    private readonly observers: IOrderObserver[] = [];
     private statusMessage: string = "";
     private weekdays = [1, 2, 3, 4];
     private weekend = [0, 5, 6];
 
-    constructor(private readonly orderNr: number, private readonly isStudentOrder: boolean, private readonly customer: Customer, private state: OrderState = new CreatedOrderState(this)) {
+    constructor(private readonly orderNr: number, private readonly isStudentOrder: boolean, private readonly customer: Customer, private state: IOrderState = new CreatedOrderState(this)) {
         this.addObserver(new CustomerNotifier(customer.getPreferredNotificationChannel()));
     }
 
-    public addObserver(observer: OrderObserver): void {
+    public addObserver(observer: IOrderObserver): void {
         this.observers.push(observer);
     }
 
@@ -123,16 +123,16 @@ export class Order {
         this.state.cancel();
     }
 
-    public setState(state: OrderState): void {
+    public setState(state: IOrderState): void {
         this.state = state;
     }
 
-    public export(exportFormat: TicketExportFormat): void {
+    public export(exportFormat: ETicketExportFormat): void {
         switch (exportFormat) {
-            case TicketExportFormat.JSON:
+            case ETicketExportFormat.JSON:
                 console.log(JSON.stringify({tickets: this.seatReservations, totalPrice: this.calculatePrice()}));
                 break;
-            case TicketExportFormat.PLAINTEXT:
+            case ETicketExportFormat.PLAINTEXT:
                 console.log("Total order:")
                 console.log(this.seatReservations.map(ticket => ticket.toString()).join("   \n"));
                 console.log("Total price: " + this.calculatePrice());
